@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy New Year 2026</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #000; /* Shuru te background kalo thakbe */
+            color: white;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        /* Sudhu 6 second-er countdown-er style */
+        #start-timer {
+            font-size: 10rem;
+            font-weight: bold;
+            color: #fff;
+            text-shadow: 0 0 20px #fff;
+        }
+
+        /* Celebration content - shuru te hidden thakbe */
+        #main-content {
+            display: none;
+            z-index: 10;
+        }
+
+        h1 {
+            font-size: 4rem;
+            text-transform: uppercase;
+            background: linear-gradient(90deg, #ff0000, #ffeb3b, #00ff00, #00bcd4, #ff00ff, #ff0000);
+            background-size: 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: move-gradient 5s linear infinite, bounce 2s infinite;
+        }
+
+        .year {
+            font-size: 8rem;
+            font-weight: bold;
+            color: #ffd700;
+            text-shadow: 0 0 20px #ffea00, 0 0 40px #ffaa00;
+        }
+
+        @keyframes move-gradient {
+            0% { background-position: 0%; }
+            100% { background-position: 100%; }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="start-timer">6</div>
+
+    <div id="main-content">
+        <h1>Happy New Year</h1>
+        <div class="year">2026</div>
+    </div>
+
+    <canvas id="fireworks"></canvas>
+
+    <script>
+        let timeLeft = 6;
+        const timerElement = document.getElementById('start-timer');
+        const mainContent = document.getElementById('main-content');
+        const body = document.body;
+
+        // 6 second countdown logic
+        const countdown = setInterval(() => {
+            timeLeft--;
+            if (timeLeft > 0) {
+                timerElement.innerText = timeLeft;
+            } else {
+                clearInterval(countdown);
+                showCelebration();
+            }
+        }, 1000);
+
+        function showCelebration() {
+            // Timer hidi kore main content dekhano
+            timerElement.style.display = 'none';
+            mainContent.style.display = 'block';
+            
+            // Background color change kora
+            body.style.background = 'radial-gradient(circle, #000428, #004e92)';
+            
+            // Fireworks shuru kora
+            startFireworks();
+        }
+
+        // Fireworks Animation
+        function startFireworks() {
+            const canvas = document.getElementById('fireworks');
+            const ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+
+            function createParticle(x, y) {
+                const colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff'];
+                return {
+                    x, y,
+                    color: colors[Math.floor(Math.random() * colors.length)],
+                    size: Math.random() * 3 + 1,
+                    speedX: Math.random() * 6 - 3,
+                    speedY: Math.random() * 6 - 3,
+                    life: 100
+                };
+            }
+
+            let particles = [];
+            function animate() {
+                ctx.fillStyle = 'rgba(0, 4, 40, 0.2)';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                
+                if (Math.random() < 0.1) {
+                    const x = Math.random() * canvas.width;
+                    const y = Math.random() * canvas.height / 2;
+                    for (let i = 0; i < 40; i++) particles.push(createParticle(x, y));
+                }
+
+                particles.forEach((p, i) => {
+                    p.x += p.speedX;
+                    p.y += p.speedY;
+                    p.life--;
+                    ctx.fillStyle = p.color;
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                    ctx.fill();
+                    if (p.life <= 0) particles.splice(i, 1);
+                });
+                requestAnimationFrame(animate);
+            }
+            animate();
+        }
+    </script>
+</body>
+</html>
