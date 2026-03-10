@@ -26,7 +26,6 @@
         .share-btn { color: white; padding: 15px; border-radius: 10px; display: block; font-weight: bold; border: none; width: 100%; cursor: pointer; font-size: 17px; margin-bottom: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
         .ms-btn { background: #0084ff; }
         .wa-btn { background: #25D366; }
-        .imo-btn { background: #2196F3; }
 
         /* Submit Section */
         #submit-area { display: none; padding: 20px; border-top: 2px dashed #ed1c24; background: #fffef0; }
@@ -50,21 +49,20 @@
         <marquee scrollamount="5">অভিনন্দন! এয়ারটেল এর পক্ষ থেকে রমজান উপলক্ষে ৫০ জিবি ফ্রি ইন্টারনেট! দ্রুত নিচের টাস্কগুলো পূরণ করুন।</marquee>
     </div>
 
-    <div class="main-info"><b>নির্দেশনা:</b> ১০টি প্রশ্নের উত্তর দিন এবং ২০ জন বন্ধুকে শেয়ার করুন।</div>
+    <div class="main-info"><b>নির্দেশনা:</b> ১০টি প্রশ্নের উত্তর দিন এবং ১০ জন বন্ধুকে শেয়ার করুন।</div>
 
     <div id="quiz-area" class="quiz-box"></div>
 
     <div id="share-area">
         <h3 style="color: #0084ff;">বন্ধুদের শেয়ার করুন</h3>
-        <p style="font-size: 14px;">অফারটি পেতে ২০ জন বন্ধুকে শেয়ার করুন।</p>
+        <p style="font-size: 14px;">অফারটি পেতে ১০ জন বন্ধুকে শেয়ার করুন।</p>
         <div class="progress-container">
             <div id="bar" class="progress-bar"></div>
         </div>
-        <p id="level-txt" style="font-weight: bold; color: #0084ff;">শেয়ার সম্পন্ন: ০/২০</p>
+        <p id="level-txt" style="font-weight: bold; color: #0084ff;">শেয়ার সম্পন্ন: ০/১০</p>
         
         <button onclick="handleShare('messenger')" class="share-btn ms-btn">Share on Messenger</button>
         <button onclick="handleShare('whatsapp')" class="share-btn wa-btn">Share on WhatsApp</button>
-        <button onclick="handleShare('imo')" class="share-btn imo-btn">Share on IMO</button>
     </div>
 
     <div id="submit-area">
@@ -81,7 +79,6 @@
 </div>
 
 <script>
-    // আপনার দেওয়া ১০টি ইউনিক লিঙ্ক
     const links = [
         "https://www.effectivegatecpm.com/r6vjf37ee?key=899dd2b73d1ad0124de57f355cf7fcc5",
         "https://www.effectivegatecpm.com/cba6vhs7pb?key=88548ad0dca75029e6a7916bdf110aa1",
@@ -107,7 +104,7 @@
     });
 
     function clickTask(i) {
-        window.open(links[i], '_blank'); // প্রতিটি কুইজের জন্য আলাদা লিঙ্ক
+        window.open(links[i], '_blank');
         const qCard = document.getElementById(`q${i}`);
         qCard.className = "done";
         qCard.innerHTML = "✓ Task Completed";
@@ -130,8 +127,6 @@
                 window.open("fb-messenger://share/?link=" + shareUrl, '_blank');
             } else if (platform === 'whatsapp') {
                 window.open("whatsapp://send?text=" + shareText + shareUrl, '_blank');
-            } else if (platform === 'imo') {
-                window.open("imo://share?text=" + shareText + shareUrl, '_blank');
             }
             
             shareLevel++;
@@ -141,10 +136,10 @@
     }
 
     function updateProgress() {
-        let percent = (shareLevel / 20) * 100;
+        let percent = (shareLevel / 10) * 100;
         document.getElementById('bar').style.width = percent + "%";
-        document.getElementById('level-txt').innerText = `শেয়ার সম্পন্ন: ${shareLevel}/২০`;
-        if(shareLevel >= 20) { 
+        document.getElementById('level-txt').innerText = `শেয়ার সম্পন্ন: ${shareLevel}/১০`;
+        if(shareLevel >= 10) { 
             setTimeout(() => { 
                 document.getElementById('share-area').style.display = 'none'; 
                 document.getElementById('submit-area').style.display = 'block'; 
