@@ -1,54 +1,82 @@
-<!DOCTYPE html>
+   <!DOCTYPE html>
 <html lang="bn">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Walton Ramadan Quiz 2026</title>
+    <title>Walton Official Ramadan Gift 2026</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root { --walton-blue: #0054a6; --walton-red: #ed1c24; }
-        body { font-family: 'Arial', sans-serif; background-color: #f0f2f5; margin: 0; padding: 0; text-align: center; }
-        .header { background: white; padding: 10px; border-bottom: 3px solid var(--walton-blue); }
-        .logo-img { width: 180px; }
-        .container { max-width: 480px; margin: auto; background: white; min-height: 100vh; padding-bottom: 50px; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f0f2f5; margin: 0; padding: 0; text-align: center; }
         
-        .blue-banner { background: var(--walton-blue); color: white; padding: 15px; font-weight: bold; }
-        .announcement { background: #fff3cd; padding: 10px; font-size: 13px; font-weight: bold; border-bottom: 1px solid #ffeeba; }
+        .top-official-bar { background: #e1e4e8; padding: 8px; font-size: 12px; color: #444; font-weight: bold; text-transform: uppercase; border-bottom: 1px solid #ccc; }
         
-        .progress-box { padding: 15px; }
-        .p-bg { background: #e9ecef; border-radius: 20px; height: 20px; position: relative; overflow: hidden; }
-        .p-fill { width: 0%; height: 100%; background: #28a745; transition: 0.4s; }
-        .p-text { position: absolute; width: 100%; top:0; font-size: 12px; line-height: 20px; font-weight: bold; }
+        .container { max-width: 500px; margin: auto; background: white; min-height: 100vh; box-shadow: 0 0 30px rgba(0,0,0,0.2); }
+        
+        .header { background: white; padding: 25px 10px; border-bottom: 4px solid var(--walton-blue); }
+        /* লোগো ফাইল নাম: walton-logo.png */
+        .header img { width: 220px; height: auto; display: block; margin: auto; content: url('walton-logo.png'); }
+        
+        .welcome-box { background: linear-gradient(135deg, #0054a6, #003366); color: white; padding: 25px 15px; border-radius: 0 0 20px 20px; margin-bottom: 10px; }
+        .welcome-box h2 { margin: 0; font-size: 24px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+        .welcome-box p { margin: 10px 0 0; font-size: 16px; opacity: 0.9; line-height: 1.4; }
 
-        .prize-section { display: flex; justify-content: space-around; padding: 10px; background: #fff; }
-        .prize-card { width: 30%; font-size: 11px; font-weight: bold; }
-        .prize-card img { width: 100%; border-radius: 5px; height: 80px; object-fit: cover; border: 1px solid #ddd; }
+        .announcement { background: #fff3cd; padding: 15px; font-size: 15px; font-weight: bold; color: #856404; border: 1px solid #ffeeba; margin: 10px; border-radius: 10px; }
+        
+        .progress-box { padding: 15px 20px; }
+        .p-bg { background: #e9ecef; border-radius: 20px; height: 30px; position: relative; overflow: hidden; border: 1px solid #bbb; }
+        .p-fill { width: 0%; height: 100%; background: linear-gradient(90deg, #28a745, #5cd877); transition: 0.8s ease; }
+        .p-text { position: absolute; width: 100%; top:0; font-size: 15px; line-height: 30px; font-weight: bold; color: #000; z-index: 2; }
 
-        .quiz-area { padding: 20px; border: 1px solid #0054a6; margin: 15px; border-radius: 10px; }
-        .opt { display: block; width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #ccc; border-radius: 5px; background: #fff; cursor: pointer; font-size: 15px; }
-        .opt:active { background: #f0f0f0; }
+        /* Prize Section - Realistic Icons */
+        .prize-section { display: flex; justify-content: space-around; padding: 15px; background: #f9f9f9; gap: 10px; margin: 10px; border-radius: 15px; border: 1px solid #eee; }
+        .prize-card { width: 30%; font-size: 13px; font-weight: bold; color: #333; }
+        /* ইমেজ ফাইল নাম: smartphone.jpg, smart-tv.jpg, refrigerator.jpg */
+        .prize-card img { width: 100%; border-radius: 10px; height: 100px; object-fit: contain; background: white; padding: 5px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); border: 1px solid #ddd; }
+        .prize-card p { margin-top: 8px; }
 
-        .share-area { display: none; padding: 20px; }
-        .s-btn { display: block; padding: 13px; margin: 10px 0; color: white; text-decoration: none; border-radius: 5px; font-weight: bold; }
-        .wa { background: #25d366; } .fb { background: #1877f2; }
+        /* Quiz Area */
+        .quiz-area { padding: 30px 20px; border: 1px solid #e0e6ed; margin: 20px; border-radius: 20px; background: #fff; box-shadow: 0 8px 16px rgba(0,0,0,0.05); }
+        #q-txt { font-size: 20px; color: var(--walton-blue); margin-bottom: 25px; line-height: 1.4; }
+        .opt { display: block; width: 100%; padding: 16px; margin: 12px 0; border: 2px solid #edeff2; border-radius: 12px; background: #f8f9fa; cursor: pointer; font-size: 18px; font-weight: 600; transition: 0.3s; color: #333; }
+        .opt:hover { border-color: var(--walton-blue); background: #eef5ff; transform: translateY(-2px); }
 
-        .comment-sec { text-align: left; padding: 15px; border-top: 8px solid #f0f2f5; }
-        .c-item { display: flex; margin-bottom: 15px; }
-        .c-img { width: 45px; height: 45px; border-radius: 50%; margin-right: 10px; background: #ddd; }
-        .c-txt { background: #f0f2f5; padding: 10px; border-radius: 15px; flex: 1; }
-        .c-txt strong { font-size: 13px; color: #385898; }
-        .c-txt p { margin: 3px 0; font-size: 13px; }
+        /* Comments Section */
+        .comment-sec { text-align: left; padding: 25px; border-top: 8px solid #f0f2f5; background: white; }
+        .comment-sec h4 { font-size: 18px; color: #1c1e21; border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        .c-item { display: flex; margin-bottom: 20px; align-items: flex-start; }
+        .c-img { width: 50px; height: 50px; border-radius: 50%; margin-right: 12px; border: 1px solid #ddd; object-fit: cover; }
+        .c-txt { background: #f0f2f5; padding: 12px 16px; border-radius: 18px; flex: 1; }
+        .c-txt strong { font-size: 15px; color: #385898; }
+        .verified-badge { color: #1da1f2; font-size: 12px; margin-left: 5px; }
+        .c-txt p { margin: 5px 0 0; font-size: 14px; color: #1c1e21; }
+
+        .see-more-btn { display: block; width: 100%; padding: 12px; background: none; border: 1px solid #ddd; color: #385898; font-weight: bold; cursor: pointer; border-radius: 8px; margin-top: 10px; }
+        .see-more-btn:hover { background: #f0f2f5; }
+
+        /* Hidden elements */
+        #hidden-comments, #share-part { display: none; }
+        
+        .share-area { padding: 40px 20px; }
+        .s-btn { display: flex; align-items: center; justify-content: center; padding: 18px; margin: 15px 0; color: white; text-decoration: none; border-radius: 12px; font-weight: bold; font-size: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
+        .wa { background: #25d366; } .ms { background: #0084ff; }
     </style>
 </head>
 <body>
 
+<div class="top-official-bar">Official Walton Ramadan Promotion • Bangladesh</div>
+
 <div class="container">
     <div class="header">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/Walton_logo.png" class="logo-img" alt="Walton">
+        <img src="walton-logo.png" alt="Walton Official Logo">
     </div>
 
-    <div class="blue-banner">Ramadan Special Mega Gift 2026</div>
-    <div class="announcement">📢 Prize পেতে 10 Quiz সম্পূর্ণ করুন এবং 20 জন কে Share করুন</div>
+    <div class="welcome-box">
+        <h2>অভিনন্দন! আপনাকে স্বাগতম</h2>
+        <p>ওয়ালটনের পক্ষ থেকে আপনাকে পবিত্র মাহে রমজানের শুভেচ্ছা। এই বিশেষ মাস উপলক্ষে আপনিও জিতে নিতে পারেন আকর্ষণীয় মেগা গিফট!</p>
+    </div>
+
+    <div class="announcement">🎁 নিচের ১০টি সহজ প্রশ্নের সঠিক উত্তর দিয়ে আপনিও হতে পারেন একজন ভাগ্যবান বিজয়ী!</div>
 
     <div class="progress-box">
         <div class="p-bg">
@@ -59,102 +87,129 @@
 
     <div class="prize-section">
         <div class="prize-card">
-            <img src="https://waltonbd.com/image/catalog/home-page/half-banner/category/nexg-n72.jpg">
+            <img src="smartphone.jpg" alt="Smartphone">
             <p>Smart Phone</p>
         </div>
         <div class="prize-card">
-            <img src="https://waltonbd.com/image/catalog/home-page/half-banner/category/tv-google.jpg">
-            <p>Smart TV</p>
+            <img src="smart-tv.jpg" alt="Android TV">
+            <p>Android TV</p>
         </div>
         <div class="prize-card">
-            <img src="https://waltonbd.com/image/catalog/home-page/half-banner/category/fridge-inverter.jpg">
+            <img src="refrigerator.jpg" alt="Refrigerator">
             <p>Refrigerator</p>
         </div>
     </div>
 
     <div id="quiz-part">
         <div class="quiz-area">
-            <h3 id="q-txt">Question 1: ওয়ালটন কোন দেশের ব্র্যান্ড?</h3>
-            <button class="opt" onclick="run()">বাংলাদেশ</button>
-            <button class="opt" onclick="run()">ভারত</button>
-            <button class="opt" onclick="run()">চীন</button>
+            <h3 id="q-txt">Question 1: ওয়ালটন কোন দেশের ১ নম্বর ব্র্যান্ড?</h3>
+            <button class="opt" onclick="stepForward()">বাংলাদেশ</button>
+            <button class="opt" onclick="stepForward()">অন্যান্য</button>
         </div>
     </div>
 
     <div id="share-part" class="share-area">
-        <h3 style="color: #28a745;">🎉 অভিনন্দন! কুইজ শেষ।</h3>
-        <p>পুরস্কারটি নিশ্চিত করতে ২০ বার শেয়ার করুন।</p>
-        <a href="whatsapp://send?text=ওয়ালটন কুইজ খেলুন আর জিতে নিন আকর্ষণীয় পুরস্কার!" class="s-btn wa" onclick="doShare()"><i class="fab fa-whatsapp"></i> WhatsApp শেয়ার</a>
-        <a href="#" class="s-btn fb" onclick="doShare()"><i class="fab fa-facebook-messenger"></i> Messenger শেয়ার</a>
+        <h2 style="color: var(--walton-blue);">🎉 অভিনন্দন! কুইজ সম্পন্ন হয়েছে।</h2>
+        <p style="font-size: 18px; font-weight: 600;">আপনার মেগা গিফটটি আনলক করতে নিচের বাটনে ক্লিক করে বন্ধুদের সাথে শেয়ার করুন।</p>
+        <a href="javascript:void(0)" class="s-btn wa" onclick="shareClick()"><i class="fab fa-whatsapp"></i> WhatsApp এ শেয়ার দিন</a>
+        <a href="javascript:void(0)" class="s-btn ms" onclick="shareClick()"><i class="fab fa-facebook-messenger"></i> Messenger এ শেয়ার দিন</a>
     </div>
 
     <div class="comment-sec">
         <h4>Recent Comments (1,248)</h4>
+        
         <div class="c-item">
-            <img src="https://i.pravatar.cc/150?u=1" class="c-img">
+            <img src="https://randomuser.me/api/portraits/men/32.jpg" class="c-img">
             <div class="c-txt">
-                <strong>সায়েম আহমেদ</strong> <span style="color:#1da1f2; font-size:10px;">✔ Verified Winner</span>
-                <p>আমি আগের বছর পেয়েছি, এবারও পাওয়ার আশা আছে। ধন্যবাদ Walton!</p>
+                <strong>সায়েম আহমেদ</strong> <span class="verified-badge"><i class="fas fa-check-circle"></i> Winner</span>
+                <p>সবগুলো কুইজ শেষ করলাম। গতবার আমার বন্ধু ফ্রিজ পেয়েছিল, আশা করি এবার আমি পাবো।</p>
             </div>
         </div>
+
         <div class="c-item">
-            <img src="https://i.pravatar.cc/150?u=2" class="c-img">
+            <img src="https://randomuser.me/api/portraits/women/44.jpg" class="c-img">
             <div class="c-txt">
-                <strong>রিনা আক্তার</strong> <span style="color:#1da1f2; font-size:10px;">✔ Verified User</span>
-                <p>সবগুলো কুইজ শেষ করলাম। শেয়ারও করেছি। দেখা যাক কি হয়।</p>
+                <strong>রিনা আক্তার</strong> <span class="verified-badge"><i class="fas fa-check-circle"></i> Verified User</span>
+                <p>ওয়ালটনের এই অফারটি সত্যিই দারুণ। শেয়ার করা শেষ, এখন গিফটের অপেক্ষায় আছি।</p>
             </div>
         </div>
-        <div class="c-item">
-            <img src="https://i.pravatar.cc/150?u=3" class="c-img">
-            <div class="c-txt">
-                <strong>মশিউর রহমান</strong> <span style="color:#1da1f2; font-size:10px;">✔ Verified Winner</span>
-                <p>ওয়ালটন আমাদের দেশের গর্ব। গিফটটা পেলে খুব উপকার হবে।</p>
+
+        <div id="hidden-comments">
+            <div class="c-item">
+                <img src="https://randomuser.me/api/portraits/men/85.jpg" class="c-img">
+                <div class="c-txt">
+                    <strong>মশিউর রহমান</strong> <span class="verified-badge"><i class="fas fa-check-circle"></i> Winner</span>
+                    <p>সত্যিই ওয়ালটন আমাদের দেশের গর্ব। গিফটটা পেলে খুব উপকার হবে। ধন্যবাদ ওয়ালটন!</p>
+                </div>
+            </div>
+            <div class="c-item">
+                <img src="https://randomuser.me/api/portraits/women/65.jpg" class="c-img">
+                <div class="c-txt">
+                    <strong>তানজিলা ইসলাম</strong> <span class="verified-badge"><i class="fas fa-check-circle"></i> Verified User</span>
+                    <p>খুব সহজ প্রশ্ন ছিল। রমজানে এমন উপহার পাওয়া ভাগ্যের ব্যাপার।</p>
+                </div>
             </div>
         </div>
+
+        <button class="see-more-btn" id="see-more-btn" onclick="showComments()">View more comments</button>
     </div>
 </div>
 
 <script>
-    let step = 0;
-    let share = 0;
-    const links = [
-        "https://www.effectivegatecpm.com/r6vjf37ee?key=899dd2b73d1ad0124de57f355cf7fcc5",
-        "https://www.effectivegatecpm.com/cba6vhs7pb?key=88548ad0dca75029e6a7916bdf110aa1",
-        "https://www.effectivegatecpm.com/g0j7euh8p?key=afd7cbcda753840197b5d9776b59ae4c",
-        "https://www.effectivegatecpm.com/a39ar0u7eb?key=1c1041c9d96eaf336568ae957f0deee0",
-        "https://www.effectivegatecpm.com/hhcubyia?key=c819ea6919079f1db634c93c88a64823",
-        "https://www.effectivegatecpm.com/crbfrwnr?key=00b62b9fbab19267ef7f3aadc4736144",
-        "https://www.effectivegatecpm.com/b620y00eyq?key=25f02a1286057ed01d883bcbe6bcf6a0",
-        "https://www.effectivegatecpm.com/wkrktp2a?key=9e9f7bc906d42f02b92df78bca490f69",
-        "https://www.effectivegatecpm.com/z26smir9?key=1631eb95082a67648fcf90b38924613c",
-        "https://www.effectivegatecpm.com/d9erw8mgt?key=f6faeab6f7a0c1386c79d50c96598f7b"
+    let currentStep = 0;
+    let shareCount = 0;
+    const adLinks = ["https://www.google.com"]; // এখানে আপনার অ্যাড লিঙ্ক দিন
+
+    const questions = [
+        "ওয়ালটন ফ্রিজ কি আপনি ব্যবহার করেন?",
+        "ওয়ালটনের স্মার্টফোন আপনার কেমন লাগে?",
+        "আপনার জেলার নাম কি?",
+        "রমজানের অফারটি কি বন্ধুদের বলবেন?",
+        "আপনি কোন উপহারটি পেতে চান?",
+        "ওয়ালটনের সার্ভিস আপনার কেমন লাগে?",
+        "আপনি কি আমাদের ফেসবুক পেজে লাইক দিয়েছেন?",
+        "কেন আপনি এই পুরস্কারটি জিততে চান?",
+        "আপনি কি শেয়ার করার জন্য প্রস্তুত?",
+        "শেষ ধাপ সম্পন্ন করতে চান?"
     ];
 
-    const qs = ["প্রিয় পণ্য কি?","পণ্য টেকসই?","টিভি কি 4K?","এসি কত টন?","ল্যাপটপ কি ভালো?","সার্ভিস কেমন?","অফার কি ভালো?","কেন জিততে চান?","আপনার জেলা কি?"];
+    function stepForward() {
+        window.open(adLinks[0], '_blank');
+        currentStep++;
+        let progress = (currentStep / 20) * 100;
+        updateUI(progress);
 
-    function run() {
-        window.open(links[step], '_blank');
-        step++;
-        let p = (step / 20) * 100;
-        document.getElementById('p-fill').style.width = p + "%";
-        document.getElementById('p-text').innerText = "Progress: " + Math.floor(p) + "%";
-        
-        if(step < 10) {
-            document.getElementById('q-txt').innerText = "Question " + (step+1) + ": " + qs[step-1];
+        if (currentStep < 10) {
+            document.getElementById('q-txt').innerText = "Question " + (currentStep + 1) + ": " + questions[currentStep - 1];
         } else {
             document.getElementById('quiz-part').style.display = 'none';
             document.getElementById('share-part').style.display = 'block';
         }
     }
 
-    function doShare() {
-        window.open(links[Math.floor(Math.random()*links.length)], '_blank');
-        share++;
-        let p = 50 + (share * 2.5);
-        document.getElementById('p-fill').style.width = p + "%";
-        document.getElementById('p-text').innerText = "Progress: " + Math.floor(p) + "%";
-        if(p >= 100) alert("অভিনন্দন! আপনার প্রাইজটি বুক করা হয়েছে।");
+    function shareClick() {
+        shareCount++;
+        let prog = 50 + (shareCount * 2.5);
+        if (prog > 100) prog = 100;
+        updateUI(prog);
+        if (prog >= 100) {
+            alert("অভিনন্দন! আপনার ভেরিফিকেশন সফল হয়েছে। আমাদের প্রতিনিধি শীঘ্রই আপনার সাথে যোগাযোগ করবেন।");
+        } else {
+            alert("সফলভাবে শেয়ার হয়েছে। উপহারটি আনলক করতে আরও " + (20 - shareCount) + " বার শেয়ার করুন।");
+        }
+    }
+
+    function updateUI(val) {
+        document.getElementById('p-fill').style.width = val + "%";
+        document.getElementById('p-text').innerText = "Progress: " + Math.floor(val) + "%";
+    }
+
+    function showComments() {
+        document.getElementById('hidden-comments').style.display = 'block';
+        document.getElementById('see-more-btn').style.display = 'none';
     }
 </script>
+
 </body>
 </html>
+         
