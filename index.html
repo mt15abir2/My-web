@@ -18,33 +18,36 @@
         .btn-opt { flex: 1; padding: 10px; border: 1px solid #ddd; background: #fff; border-radius: 6px; cursor: pointer; font-weight: bold; }
         .done { background: #e8f5e9 !important; border-color: #4CAF50 !important; color: #2e7d32; text-align: center; padding: 10px; border-radius: 10px; font-weight: bold; margin-bottom: 12px; }
 
-        /* Messenger Share Section */
+        /* Share Section */
         #share-area { display: none; padding: 20px; background: #f9f9f9; border-top: 2px solid #eee; }
         .progress-container { width: 100%; background: #ddd; border-radius: 10px; height: 18px; margin: 15px 0; overflow: hidden; border: 1px solid #ccc; }
         .progress-bar { width: 0%; height: 100%; background: #0084ff; transition: 0.4s; }
-        .ms-btn { background: #0084ff; color: white; padding: 15px; border-radius: 10px; display: block; font-weight: bold; border: none; width: 100%; cursor: pointer; font-size: 17px; box-shadow: 0 4px 10px rgba(0,132,255,0.3); }
+        
+        .share-btn { color: white; padding: 15px; border-radius: 10px; display: block; font-weight: bold; border: none; width: 100%; cursor: pointer; font-size: 17px; margin-bottom: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        .ms-btn { background: #0084ff; }
+        .wa-btn { background: #25D366; }
+        .imo-btn { background: #2196F3; }
 
-        /* Submit Section (লক করা থাকবে) */
+        /* Submit Section */
         #submit-area { display: none; padding: 20px; border-top: 2px dashed #ed1c24; background: #fffef0; }
         input { width: 90%; padding: 15px; margin: 10px 0; border: 2px solid #ed1c24; border-radius: 8px; font-size: 20px; text-align: center; outline: none; }
         .sub-btn { background: #ed1c24; color: white; padding: 15px; width: 100%; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; font-size: 18px; }
 
         /* Comments */
         .comments-box { padding: 15px; text-align: left; background: #fafafa; border-top: 1px solid #eee; }
-        .comment { display: flex; gap: 10px; margin-bottom: 12px; animation: fadeIn 0.5s; }
+        .comment { display: flex; gap: 10px; margin-bottom: 12px; }
         .avatar { width: 40px; height: 40px; background: #ccc; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; flex-shrink: 0; }
         .c-text-box { background: #f0f2f5; padding: 10px; border-radius: 12px; flex: 1; }
         .c-name { font-weight: bold; font-size: 13px; margin-bottom: 2px; }
         .c-text { font-size: 13px; color: #444; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <img src="1773159592917.pn" class="banner" alt="Offer Banner">
+    <img src="1773159592917.png" class="banner" alt="Offer Banner">
     <div class="breaking-news">
-        <marquee scrollamount="5">অভিনন্দন! এয়ারটেল এর পক্ষ থেকে রমজান উপলক্ষে ৫০০ জন গ্রাহক পাচ্ছেন ৫০ জিবি ফ্রি ইন্টারনেট! আপনিও দ্রুত নিচের টাস্কগুলো পূরণ করুন।</marquee>
+        <marquee scrollamount="5">অভিনন্দন! এয়ারটেল এর পক্ষ থেকে রমজান উপলক্ষে ৫০ জিবি ফ্রি ইন্টারনেট! দ্রুত নিচের টাস্কগুলো পূরণ করুন।</marquee>
     </div>
 
     <div class="main-info"><b>নির্দেশনা:</b> ১০টি প্রশ্নের উত্তর দিন এবং ২০ জন বন্ধুকে শেয়ার করুন।</div>
@@ -52,13 +55,16 @@
     <div id="quiz-area" class="quiz-box"></div>
 
     <div id="share-area">
-        <h3 style="color: #0084ff;">মেসেঞ্জারে শেয়ার করুন</h3>
-        <p style="font-size: 14px;">অফারটি পেতে ২০ জন বন্ধুকে শেয়ার করুন। প্রতি ২ ক্লিকে ১টি করে ধাপ পূর্ণ হবে।</p>
+        <h3 style="color: #0084ff;">বন্ধুদের শেয়ার করুন</h3>
+        <p style="font-size: 14px;">অফারটি পেতে ২০ জন বন্ধুকে শেয়ার করুন।</p>
         <div class="progress-container">
             <div id="bar" class="progress-bar"></div>
         </div>
         <p id="level-txt" style="font-weight: bold; color: #0084ff;">শেয়ার সম্পন্ন: ০/২০</p>
-        <button onclick="shareMessenger()" class="ms-btn">Share on Messenger</button>
+        
+        <button onclick="handleShare('messenger')" class="share-btn ms-btn">Share on Messenger</button>
+        <button onclick="handleShare('whatsapp')" class="share-btn wa-btn">Share on WhatsApp</button>
+        <button onclick="handleShare('imo')" class="share-btn imo-btn">Share on IMO</button>
     </div>
 
     <div id="submit-area">
@@ -75,26 +81,33 @@
 </div>
 
 <script>
+    // আপনার দেওয়া ১০টি ইউনিক লিঙ্ক
     const links = [
         "https://www.effectivegatecpm.com/r6vjf37ee?key=899dd2b73d1ad0124de57f355cf7fcc5",
         "https://www.effectivegatecpm.com/cba6vhs7pb?key=88548ad0dca75029e6a7916bdf110aa1",
-        "https://www.effectivegatecpm.com/g0j7euh8p?key=afd7cbcda753840197b5d9776b59ae4c"
+        "https://www.effectivegatecpm.com/g0j7euh8p?key=afd7cbcda753840197b5d9776b59ae4c",
+        "https://www.effectivegatecpm.com/a39ar0u7eb?key=1c1041c9d96eaf336568ae957f0deee0",
+        "https://www.effectivegatecpm.com/hhcubyia?key=c819ea6919079f1db634c93c88a64823",
+        "https://www.effectivegatecpm.com/crbfrwnr?key=00b62b9fbab19267ef7f3aadc4736144",
+        "https://www.effectivegatecpm.com/b620y00eyq?key=25f02a1286057ed01d883bcbe6bcf6a0",
+        "https://www.effectivegatecpm.com/wkrktp2a?key=9e9f7bc906d42f02b92df78bca490f69",
+        "https://www.effectivegatecpm.com/z26smir9?key=1631eb95082a67648fcf90b38924613c",
+        "https://www.effectivegatecpm.com/d9erw8mgt?key=f6faeab6f7a0c1386c79d50c96598f7b"
     ];
 
     const questions = ["আপনার সিমটি কি এয়ারটেল?", "২ বছরের পুরনো সিম কি?", "প্রতিদিন কি ৪জি নেট পান?", "৫ ঘণ্টা ডাটা চালান কি?", "ফ্রি ডাটা কি দরকার?", "সিম কি রেজিস্ট্রেশন করা?", "আপনার কি ৪জি কভারেজ আছে?", "৫জি ফোন কি আছে?", "নিয়মিত রিচার্জ করেন কি?", "বন্ধুদের কি অফারটি দিবেন?"];
 
     let quizDone = 0;
     let shareLevel = 0;
-    let clickStep = 0; 
+    let clickStep = 0;
 
-    // Load Quiz
     const quizArea = document.getElementById('quiz-area');
     questions.forEach((q, i) => {
         quizArea.innerHTML += `<div class="q-card" id="q${i}"><p>${i+1}. ${q}</p><div class="btn-group"><button class="btn-opt" onclick="clickTask(${i})">হ্যাঁ</button><button class="btn-opt" onclick="clickTask(${i})">না</button></div></div>`;
     });
 
     function clickTask(i) {
-        window.open(links[i % links.length], '_blank');
+        window.open(links[i], '_blank'); // প্রতিটি কুইজের জন্য আলাদা লিঙ্ক
         const qCard = document.getElementById(`q${i}`);
         qCard.className = "done";
         qCard.innerHTML = "✓ Task Completed";
@@ -105,44 +118,48 @@
         }
     }
 
-    // Share Messenger Logic
-    function shareMessenger() {
+    function handleShare(platform) {
         if (clickStep === 0) {
-            // প্রথম ক্লিকে অ্যাড ওপেন হবে
-            window.open(links[shareLevel % links.length], '_blank');
+            window.open(links[shareLevel % 10], '_blank');
             clickStep = 1;
         } else {
-            // দ্বিতীয় ক্লিকে শেয়ার উইন্ডো ওপেন হবে এবং লেভেল বাড়বে
-            window.open("fb-messenger://share/?link=" + encodeURIComponent(window.location.href), '_blank');
+            let shareUrl = encodeURIComponent(window.location.href);
+            let shareText = encodeURIComponent("এয়ারটেল রমজান অফারে ৫০ জিবি ফ্রি নিন! আমি পেয়েছি, আপনিও ট্রাই করুন। লিঙ্ক: ");
+            
+            if (platform === 'messenger') {
+                window.open("fb-messenger://share/?link=" + shareUrl, '_blank');
+            } else if (platform === 'whatsapp') {
+                window.open("whatsapp://send?text=" + shareText + shareUrl, '_blank');
+            } else if (platform === 'imo') {
+                window.open("imo://share?text=" + shareText + shareUrl, '_blank');
+            }
+            
             shareLevel++;
             clickStep = 0;
-            
-            let percent = (shareLevel / 20) * 100;
-            document.getElementById('bar').style.width = percent + "%";
-            document.getElementById('level-txt').innerText = `শেয়ার সম্পন্ন: ${shareLevel}/২০`;
+            updateProgress();
+        }
+    }
 
-            // ২০ বার হলে সাবমিট বক্স আসবে
-            if(shareLevel >= 20) { 
-                setTimeout(() => { 
-                    document.getElementById('share-area').style.display = 'none'; 
-                    document.getElementById('submit-area').style.display = 'block'; 
-                }, 1000); 
-            }
+    function updateProgress() {
+        let percent = (shareLevel / 20) * 100;
+        document.getElementById('bar').style.width = percent + "%";
+        document.getElementById('level-txt').innerText = `শেয়ার সম্পন্ন: ${shareLevel}/২০`;
+        if(shareLevel >= 20) { 
+            setTimeout(() => { 
+                document.getElementById('share-area').style.display = 'none'; 
+                document.getElementById('submit-area').style.display = 'block'; 
+            }, 1000); 
         }
     }
 
     function finalSubmit() {
         const num = document.getElementById('phone').value;
         if(num.length < 11) { alert("ভুল নম্বর! সঠিক ১১ ডিজিটের এয়ারটেল নম্বর দিন।"); }
-        else { alert("আপনার অনুরোধ সফল হয়েছে। আগামী ২৪ ঘণ্টার মধ্যে ডাটা অ্যাক্টিভেট হয়ে যাবে।"); }
+        else { alert("আপনার অনুরোধ সফল হয়েছে। ২৪ ঘণ্টার মধ্যে ডাটা পাবেন।"); }
     }
 
-    // Comment Data (Rotating Names)
     const commentData = [
-        {n: "সোহেল রানা", p: "0164288"}, {n: "মিম আক্তার", p: "0161123"}, {n: "তানভীর হাসান", p: "0167745"},
-        {n: "সুমাইয়া জান্নাত", p: "0169012"}, {n: "রাকিব মোল্লা", p: "0162233"}, {n: "আরিফ বিল্লাহ", p: "0165544"},
-        {n: "সাদিয়া ইসলাম", p: "0168899"}, {n: "জসিম উদ্দিন", p: "0163377"}, {n: "কামরুল ইসলাম", p: "0164422"},
-        {n: "নুসরাত জাহান", p: "0161155"}
+        {n: "সোহেল রানা", p: "0164288"}, {n: "মিম আক্তার", p: "0161123"}, {n: "তানভীর হাসান", p: "0167745"}
     ];
 
     let cIndex = 0;
@@ -151,7 +168,7 @@
         const c = commentData[cIndex];
         const div = document.createElement('div');
         div.className = 'comment';
-        div.innerHTML = `<div class="avatar">👤</div><div class="c-text-box"><div class="c-name">${c.n} (${c.p}XXXX)</div><div class="c-text">আলহামদুলিল্লাহ! আমি ৫০ জিবি ডাটা পেয়েছি। এয়ারটেলকে ধন্যবাদ।</div></div>`;
+        div.innerHTML = `<div class="avatar">👤</div><div class="c-text-box"><div class="c-name">${c.n} (${c.p}XXXX)</div><div class="c-text">আলহামদুলিল্লাহ! আমি ডাটা পেয়েছি।</div></div>`;
         list.prepend(div);
         if(list.children.length > 5) list.lastChild.remove();
         cIndex = (cIndex + 1) % commentData.length;
